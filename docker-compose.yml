@@ -8,5 +8,5 @@ services:
       PG_ORDER_API_DATABASE_PASSWORD: postgres
       PG_ORDER_API_DATABASE_URL: "postgresql://localhost:5432/db_orders_api?useTimezone=true&serverTimezone=UTC"
     ports:
-      - "8080:8080"
+      - "8081:8081"
     restart: on-failure
