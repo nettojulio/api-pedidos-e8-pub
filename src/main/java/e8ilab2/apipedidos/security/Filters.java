@@ -27,7 +27,7 @@ public class Filters extends OncePerRequestFilter{
             get.addHeader("Authorization",request.getHeader("Authorization"));
             var response2 = client.execute(get);
             response2.getCode();
-            if(response2.getCode() != 204){
+            if(response2.getCode() > 204){
               response.sendError(401, "Nao autorizado");
               return;
             }
