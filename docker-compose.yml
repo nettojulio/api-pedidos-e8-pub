@@ -4,9 +4,12 @@ services:
     container_name: teste-api-pedidos-e8
     image: nettojulio/api-pedidos-e8
     environment:
-      PG_ORDER_API_DATABASE_USERNAME: postgres
-      PG_ORDER_API_DATABASE_PASSWORD: postgres
-      PG_ORDER_API_DATABASE_URL: "postgresql://localhost:5432/db_orders_api?useTimezone=true&serverTimezone=UTC"
+        RDS_HOSTNAME: database-e8-desafio2.ccbiucioexib.us-east-1.rds.amazonaws.com
+        RDS_PORT: 5432
+        RDS_DB_NAME: api_administrador_e8_ilab2
+        RDS_USERNAME: postgres
+        RDS_PASSWORD: postgres
+        URL_ADMIN_AUTH_ORDER_API: "http://localhost:8080/validar"
     ports:
       - "8080:8080"
     restart: on-failure
