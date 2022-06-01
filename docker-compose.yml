@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  teste-api-pedidos-e8:
+    container_name: teste-api-pedidos-e8
+    image: nettojulio/api-pedidos-e8
+    environment:
+      PG_ORDER_API_DATABASE_USERNAME: postgres
+      PG_ORDER_API_DATABASE_PASSWORD: postgres
+      PG_ORDER_API_DATABASE_URL: "postgresql://localhost:5432/db_orders_api?useTimezone=true&serverTimezone=UTC"
+    ports:
+      - "8080:8080"
+    restart: on-failure
