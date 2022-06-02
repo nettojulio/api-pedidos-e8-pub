@@ -34,8 +34,7 @@ public class SQSService {
 
         // ===== Busca uma Fila =====
         GetQueueUrlRequest request = GetQueueUrlRequest.builder()
-                .queueName("sqs-e8-desafio2") // enfia para fila fifo
-                // .queueName("fila-danilo") // enfia para fila padrão
+                .queueName("sqs-e8-desafio2")
                 .queueOwnerAWSAccountId("755977887883").build();
         GetQueueUrlResponse createResult = sqsClient.getQueueUrl(request);
 
