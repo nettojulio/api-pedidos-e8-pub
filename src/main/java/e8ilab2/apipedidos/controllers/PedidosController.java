@@ -2,6 +2,7 @@ package e8ilab2.apipedidos.controllers;
 
 import e8ilab2.apipedidos.models.Pedidos;
 import e8ilab2.apipedidos.services.IPedidosServices;
+import e8ilab2.apipedidos.services.SQSService;
 import e8ilab2.apipedidos.utils.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,7 @@ public class PedidosController {
     public ResponseEntity<?> cadastrarNovoPedido(@RequestBody Pedidos novo) {
         Pedidos pedido = service.novoPedido(novo);
         if (pedido != null) {
+            SQSService.sendMessage(pedido.toString());
             return ResponseEntity.status(201).body(pedido);
         }
         return ResponseEntity.badRequest().body(new Messages(400, "Dados Invalidos"));

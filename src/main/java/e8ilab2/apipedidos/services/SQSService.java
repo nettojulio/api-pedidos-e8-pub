@@ -47,7 +47,6 @@ public class SQSService {
     public static void sendMessage(SqsClient sqsClient, String queueUrl, String message) {
         SendMessageRequest sendMsgRequest = SendMessageRequest.builder()
                 .queueUrl(queueUrl)
-                .messageGroupId("grupo") // Para filas fifo
                 .messageBody(message)
                 .build();
         sqsClient.sendMessage(sendMsgRequest);
