@@ -4,7 +4,7 @@ services:
     container_name: api-administrador-e8
     image: nettojulio/api-administrador-e8
     environment:
-      RDS_HOSTNAME: database-e8-desafio2.ccbiucioexib.us-east-1.rds.amazonaws.com
+      RDS_HOSTNAME: database-2.ccbiucioexib.us-east-1.rds.amazonaws.com
       RDS_PORT: 5432
       RDS_ADMIN_DB_NAME: api_administrador_e8_ilab2
       RDS_USERNAME: postgres
@@ -19,7 +19,7 @@ services:
     container_name: api-pedidos-e8
     image: nettojulio/api-pedidos-e8
     environment:
-      RDS_HOSTNAME: database-e8-desafio2.ccbiucioexib.us-east-1.rds.amazonaws.com
+      RDS_HOSTNAME: database-2.ccbiucioexib.us-east-1.rds.amazonaws.com
       RDS_PORT: 5432
       RDS_ORDER_DB_NAME: db_orders_api
       RDS_USERNAME: postgres
