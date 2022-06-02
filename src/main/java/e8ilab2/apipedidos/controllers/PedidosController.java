@@ -16,8 +16,13 @@ public class PedidosController {
     private IPedidosServices service;
 
     @GetMapping("/pedidos")
-    public ResponseEntity<List<Pedidos>> recuperarTodos() {
-        return ResponseEntity.ok(service.recuperarTodos());
+    public ResponseEntity<?> recuperarTodos() {
+        List<Pedidos> pedidos = service.recuperarTodos();
+
+        if (pedidos.size() != 0){
+            return ResponseEntity.ok(service.recuperarTodos());
+        }
+        return null;
     }
 
     @GetMapping("/pedidos/{id}")
