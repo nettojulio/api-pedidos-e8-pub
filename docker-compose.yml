@@ -32,3 +32,19 @@ services:
     depends_on:
       - api-administrador-e8
     restart: on-failure
+
+  api-usuarios-e8:
+    container_name: api-usuarios-e8
+    image: nettojulio/api-usuarios-e8
+    environment:
+      RDS_HOSTNAME: database-2.ccbiucioexib.us-east-1.rds.amazonaws.com
+      RDS_PORT: 5432
+      RDS_USERS_DB_NAME: api_usuarios
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: postgres
+      URL_ADMIN_AUTH_ORDER_API: "http://api-administrador-e8:8080/validar"
+    ports:
+      - "8082:8082"
+    depends_on:
+      - api-administrador-e8
+    restart: on-failure
