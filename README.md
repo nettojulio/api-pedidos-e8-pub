@@ -28,7 +28,7 @@ application.properties
 ## Instalação
 Rodar no terminal
 ```
-docker-compose up
+$ docker-compose up
 ```
 
 ## Autores
@@ -95,10 +95,10 @@ docker-compose up
 ---
 
 
-### Listar Usuários
+### Listar Pedidos
 
 ```http
-  GET /usuarios
+  GET /pedidos
 ```
 
 #### Dados Enviados
@@ -144,17 +144,17 @@ docker-compose up
 ---
 
 
-### Buscar Usuário por id
+### Buscar Pedido por id do Pedido
 
 ```http
-  GET /usuarios/{id}
+  GET /pedidos/{id}
 ```
 
 #### Dados Enviados
 
 | Variável   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `Integer` | PathVariable identificadora do usuario a ser encontrado |
+| `id`      | `Integer` | PathVariable identificadora do pedido a ser encontrado |
 
 #### **No Body
 
@@ -162,13 +162,34 @@ docker-compose up
 
 ```http
 {
-  	"id": 1,
-	"nome":"Usuário",
-	"cpf":"11122233344",
-	"email":"usuario@email.com",
-	"telefone":"55999999999",
-	"dataNascimento":"2004-01-01T00:00:00.000+00:00"
+	"id": 3,
+	"usuarioId": 4,
+	"valorTotal": 21.0,
+	"descricao": "Marmite + Mini Refri",
+	"dataPedido": "2022-06-06T11:00:09",
+	"status": "Pendente"
 }
 ```
 
 #### (200) OK, Erro(401) Não Autorizado
+
+
+### Buscar Pedido por id do Usuário
+
+```http
+  GET /pedidos/usuario/{id}
+```
+
+
+### Alterar Pedido
+
+```http
+  PUT /pedidos/{usuarioId}
+```
+
+
+### Deletat Pedido
+
+```http
+ DELETE /pedidos/{id}
+```
