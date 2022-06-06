@@ -173,6 +173,7 @@ $ docker-compose up
 
 #### (200) OK, Erro(401) Não Autorizado
 
+---
 
 ### Buscar Pedido por id do Usuário
 
@@ -180,6 +181,7 @@ $ docker-compose up
   GET /pedidos/usuario/{id}
 ```
 
+---
 
 ### Alterar Pedido
 
@@ -187,6 +189,7 @@ $ docker-compose up
   PUT /pedidos/{usuarioId}
 ```
 
+---
 
 ### Deletat Pedido
 
