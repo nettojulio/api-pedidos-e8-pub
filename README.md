@@ -191,7 +191,7 @@ $ docker-compose up
 
 ---
 
-### Deletat Pedido
+### Deletar Pedido
 
 ```http
  DELETE /pedidos/{id}
