@@ -19,13 +19,13 @@ public class PedidoDTO {
 
     private String status;
 
-    public PedidoDTO(Integer usuarioId, String usuarioName, String usuarioEmail, Double valorTotal, String descricao, String status) {
+    public PedidoDTO(Integer usuarioId, String usuarioName, String usuarioEmail, Double valorTotal, String descricao,LocalDateTime dataPedido, String status) {
         this.usuarioId = usuarioId;
         this.usuarioName = usuarioName;
         this.usuarioEmail = usuarioEmail;
         this.valorTotal = valorTotal;
         this.descricao = descricao;
-        this.dataPedido = LocalDateTime.now();
+        this.dataPedido = dataPedido;
         this.status = status;
     }
 
@@ -91,5 +91,19 @@ public class PedidoDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoDTO{" +
+                "id=" + id +
+                ", usuarioId=" + usuarioId +
+                ", usuarioName='" + usuarioName + '\'' +
+                ", usuarioEmail='" + usuarioEmail + '\'' +
+                ", valorTotal=" + valorTotal +
+                ", descricao='" + descricao + '\'' +
+                ", dataPedido=" + dataPedido +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

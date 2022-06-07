@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -49,12 +50,16 @@ public class PedidosController {
 
     @PostMapping("/pedidos")
     public ResponseEntity<?> cadastrarNovoPedido(@RequestBody PedidoDTO pedidoDTO) throws Exception {
-        Pedidos pedidoNew = new Pedidos(pedidoDTO.getUsuarioId(),pedidoDTO.getValorTotal(),pedidoDTO.getDescricao(),pedidoDTO.getDataPedido(),pedidoDTO.getStatus());
+
+        Pedidos pedidoNew = new Pedidos(pedidoDTO.getUsuarioId(),pedidoDTO.getValorTotal(),pedidoDTO.getDescricao(), pedidoDTO.getDataPedido(),pedidoDTO.getStatus());
+
+
         Pedidos pedidos = service.novoPedido(pedidoNew);
-        service.novoPedido(pedidos);
+        //String dataParsed = new Gson().toJson(pedidoDTO.getDataPedido());
+        //System.err.println(dataParsed);
         if (pedidos != null) {
-            String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
-            SQSService.sendMessage(pedidoDTOParsed);
+            //String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
+            SQSService.sendMessage(pedidoDTO.toString());
             return ResponseEntity.status(201).body(pedidos);
         }
         return ResponseEntity.badRequest().body(new Messages(400, "Dados Invalidos"));
