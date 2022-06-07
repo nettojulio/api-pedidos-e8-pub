@@ -7,25 +7,25 @@ public class PedidoDTO {
 
     private Integer usuarioId;
 
-    private String usuarioName ;
+    private String usuarioName;
 
-    private String usuarioEmail ;
+    private String usuarioEmail;
 
     private Double valorTotal;
 
     private String descricao;
 
-    private LocalDateTime dataPedido;
+    private String dataPedido;
 
     private String status;
 
-    public PedidoDTO(Integer usuarioId, String usuarioName, String usuarioEmail, Double valorTotal, String descricao,LocalDateTime dataPedido, String status) {
+    public PedidoDTO(Integer usuarioId, String usuarioName, String usuarioEmail, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
         this.usuarioId = usuarioId;
         this.usuarioName = usuarioName;
         this.usuarioEmail = usuarioEmail;
         this.valorTotal = valorTotal;
         this.descricao = descricao;
-        this.dataPedido = dataPedido;
+        this.dataPedido = dataPedido.toString();
         this.status = status;
     }
 
@@ -77,12 +77,12 @@ public class PedidoDTO {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataPedido() {
+    public String getDataPedido() {
         return dataPedido;
     }
 
     public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
+        this.dataPedido = dataPedido.toString();
     }
 
     public String getStatus() {

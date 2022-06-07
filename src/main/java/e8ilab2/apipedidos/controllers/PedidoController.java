@@ -1,5 +1,6 @@
 package e8ilab2.apipedidos.controllers;
 
+import com.google.gson.Gson;
 import e8ilab2.apipedidos.dto.PedidoDTO;
 import e8ilab2.apipedidos.models.Pedido;
 import e8ilab2.apipedidos.services.IPedidoService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static e8ilab2.apipedidos.utils.DateConverter.stringToDate;
+
 @RestController
 public class PedidoController {
 
@@ -21,7 +24,7 @@ public class PedidoController {
     public ResponseEntity<?> recuperarTodos() {
         List<Pedido> pedidos = service.recuperarTodos();
 
-        if (pedidos.size() != 0){
+        if (pedidos.size() != 0) {
             return ResponseEntity.ok(service.recuperarTodos());
         }
         return null;
@@ -48,14 +51,11 @@ public class PedidoController {
     @PostMapping("/pedidos")
     public ResponseEntity<?> cadastrarNovoPedido(@RequestBody PedidoDTO pedidoDTO) throws Exception {
 
-        Pedido pedidoNew = new Pedido(pedidoDTO.getUsuarioId(),pedidoDTO.getValorTotal(),pedidoDTO.getDescricao(), pedidoDTO.getDataPedido(),pedidoDTO.getStatus());
-
-
+        Pedido pedidoNew = new Pedido(pedidoDTO.getUsuarioId(), pedidoDTO.getValorTotal(), pedidoDTO.getDescricao(), stringToDate(pedidoDTO.getDataPedido()), pedidoDTO.getStatus());
         Pedido pedido = service.novoPedido(pedidoNew);
-        //String dataParsed = new Gson().toJson(pedidoDTO.getDataPedido());
-        //System.err.println(dataParsed);
+
         if (pedido != null) {
-            //String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
+            String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
             SQSService.sendMessage(pedidoDTO.toString());
             return ResponseEntity.status(201).body(pedido);
         }
