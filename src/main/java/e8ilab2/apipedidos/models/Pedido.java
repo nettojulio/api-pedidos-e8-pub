@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_pedidos")
-public class Pedidos {
+public class Pedido {
 
     @Id
     @Column(name = "id", nullable = false, columnDefinition = "SERIAL")
@@ -27,7 +27,7 @@ public class Pedidos {
     @Column(name = "status", nullable = false, length = 50, columnDefinition = "VARCHAR")
     private String status;
 
-    public Pedidos(Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
+    public Pedido(Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
         this.usuarioId = usuarioId;
         this.valorTotal = valorTotal;
         this.descricao = descricao;
@@ -84,10 +84,10 @@ public class Pedidos {
         this.status = status;
     }
 
-    public Pedidos() {
+    public Pedido() {
     }
 
-    public Pedidos(Integer id, Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
+    public Pedido(Integer id, Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.valorTotal = valorTotal;
@@ -98,7 +98,7 @@ public class Pedidos {
 
     @Override
     public String toString() {
-        return "Pedidos{" +
+        return "Pedido{" +
                 "id=" + id +
                 ", usuarioId=" + usuarioId +
                 ", valorTotal=" + valorTotal +
