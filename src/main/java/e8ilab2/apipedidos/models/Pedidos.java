@@ -27,6 +27,15 @@ public class Pedidos {
     @Column(name = "status", nullable = false, length = 50, columnDefinition = "VARCHAR")
     private String status;
 
+    public Pedidos(Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
+        this.usuarioId = usuarioId;
+        this.valorTotal = valorTotal;
+        this.descricao = descricao;
+        this.dataPedido = dataPedido;
+        this.status = status;
+    }
+
+
     public Integer getId() {
         return id;
     }

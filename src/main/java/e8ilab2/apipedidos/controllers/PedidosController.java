@@ -1,5 +1,7 @@
 package e8ilab2.apipedidos.controllers;
 
+import com.google.gson.Gson;
+import e8ilab2.apipedidos.dto.PedidoDTO;
 import e8ilab2.apipedidos.models.Pedidos;
 import e8ilab2.apipedidos.services.IPedidosServices;
 import e8ilab2.apipedidos.services.SQSService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -45,11 +48,14 @@ public class PedidosController {
     }
 
     @PostMapping("/pedidos")
-    public ResponseEntity<?> cadastrarNovoPedido(@RequestBody Pedidos novo) {
-        Pedidos pedido = service.novoPedido(novo);
-        if (pedido != null) {
-            SQSService.sendMessage(pedido.toString());
-            return ResponseEntity.status(201).body(pedido);
+    public ResponseEntity<?> cadastrarNovoPedido(@RequestBody PedidoDTO pedidoDTO) throws Exception {
+        Pedidos pedidoNew = new Pedidos(pedidoDTO.getUsuarioId(),pedidoDTO.getValorTotal(),pedidoDTO.getDescricao(),pedidoDTO.getDataPedido(),pedidoDTO.getStatus());
+        Pedidos pedidos = service.novoPedido(pedidoNew);
+        service.novoPedido(pedidos);
+        if (pedidos != null) {
+            String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
+            SQSService.sendMessage(pedidoDTOParsed);
+            return ResponseEntity.status(201).body(pedidos);
         }
         return ResponseEntity.badRequest().body(new Messages(400, "Dados Invalidos"));
     }
