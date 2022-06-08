@@ -219,8 +219,45 @@ para rodar os containers docker das três APIs conjuntamente, a partir das respe
 ### Alterar Pedido
 
 ```http
-  PUT /pedidos/{usuarioId}
+  PUT /pedidos/{Id}
 ```
+
+#### Dados Enviados
+
+| Chave   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `Integer` | PathVariable identificadora do pedido a ser encontrado **Obrigatório** |
+| `usuarioId` | `Integer` | id do usuario **Obrigatório** |
+| `valorTotal` | `Double` | O valor da soma dos preços de cada item do pedido **Obrigatório** |
+| `dataPedido` | `LocalDateTime` | Dia e hora da solicitação do pedido **Obrigatório** |
+| `descricao` | `String` | Lista com os nomes, quantidades e preços de cada item do pedido **Obrigatório** |
+| `status` | `String` | Se o pedido está pedente ou concluído **Obrigatório** |
+
+#### Body
+
+```http
+{
+	"usuarioId": 4,
+	"valorTotal": 21.00,
+	"dataPedido": "2022-06-06T11:00:09",
+	"descricao": "Marmita + Mini Refri",
+	"status": "Pendente"
+}
+```
+
+#### Dados Recebidos
+```http
+{
+	"id": 3,
+	"usuarioId": 4,
+	"valorTotal": 21.0,
+	"descricao": "Marmita + Mini Refri",
+	"dataPedido": "2022-06-06T11:00:09",
+	"status": "Pendente"
+}
+```
+
+#### (201) Created ou Erro(400) Bad Request
 
 ---
 
@@ -229,3 +266,15 @@ para rodar os containers docker das três APIs conjuntamente, a partir das respe
 ```http
  DELETE /pedidos/{id}
 ```
+
+#### Dados Enviados
+
+| Variável   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `Integer` | PathVariable identificadora do pedido a ser deletado |
+
+#### **No Body
+
+#### Dados Recebidos
+
+#### (200) OK {"message": "Pedido deletado com sucesso"} ou Erro(404) {"message": "Pedido não encontrado"}
