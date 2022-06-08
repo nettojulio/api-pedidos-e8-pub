@@ -7,12 +7,14 @@ import e8ilab2.apipedidos.services.IPedidoService;
 import e8ilab2.apipedidos.services.SQSService;
 import e8ilab2.apipedidos.utils.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static e8ilab2.apipedidos.utils.DateConverter.stringToDate;
+import static e8ilab2.apipedidos.utils.PageableUtils.sortedShowRoom;
 
 @RestController
 public class PedidoController {
@@ -21,13 +23,9 @@ public class PedidoController {
     private IPedidoService service;
 
     @GetMapping("/pedidos")
-    public ResponseEntity<?> recuperarTodos() {
-        List<Pedido> pedidos = service.recuperarTodos();
-
-        if (pedidos.size() != 0) {
-            return ResponseEntity.ok(service.recuperarTodos());
-        }
-        return null;
+    public ResponseEntity<?> recuperarTodos(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size, @RequestParam(required = false) String properties, @RequestParam(required = false) Boolean descending) {
+        Page<Pedido> pedidos = service.recuperarTodos(sortedShowRoom(page, size, properties, descending));
+        return ResponseEntity.ok(pedidos);
     }
 
     @GetMapping("/pedidos/{id}")

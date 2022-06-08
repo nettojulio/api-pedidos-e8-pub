@@ -3,6 +3,8 @@ package e8ilab2.apipedidos.services;
 import e8ilab2.apipedidos.dao.PedidoDAO;
 import e8ilab2.apipedidos.models.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -14,8 +16,8 @@ public class PedidoService implements IPedidoService {
     private PedidoDAO dao;
 
     @Override
-    public List<Pedido> recuperarTodos() {
-        return dao.recuperarTodos();
+    public Page<Pedido> recuperarTodos(Pageable p) {
+        return dao.findAll(p);
     }
 
     @Override
@@ -63,4 +65,6 @@ public class PedidoService implements IPedidoService {
             return false;
         }
     }
+
+
 }
