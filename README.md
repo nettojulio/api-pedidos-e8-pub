@@ -29,7 +29,7 @@ Ou, dentro do diretório raiz do projeto, rodar no terminal o seguinte comando:
 $ docker-compose up
 ```
 
-para rodar os containers docker das três APIs conjuntamente, a partir das respectivas imagens no docker.
+para rodar os containers docker das três APIs conjuntamente, a partir das respectivas imagens no docker, uma vez já tendo o Docker previamente instalado e rodando na sua máquina.
 
 ## Autores
 
