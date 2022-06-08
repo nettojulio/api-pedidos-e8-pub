@@ -56,7 +56,8 @@ public class PedidoController {
 
         if (pedido != null) {
             String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
-            SQSService.sendMessage(pedidoDTO.toString());
+            System.out.println(pedidoDTOParsed);
+            SQSService.sendMessage(pedidoDTOParsed);
             return ResponseEntity.status(201).body(pedido);
         }
         return ResponseEntity.badRequest().body(new Messages(400, "Dados Invalidos"));
