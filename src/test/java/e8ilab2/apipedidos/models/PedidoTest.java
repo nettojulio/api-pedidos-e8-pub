@@ -3,13 +3,12 @@ package e8ilab2.apipedidos.models;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PedidosTest {
+class PedidoTest {
 
-    Pedidos pedido = new Pedidos(1, 1, 2.99, "Teste", LocalDateTime.of(2022,5,30,22,30,59), "Ok");
+    Pedido pedido = new Pedido(1, 1, 2.99, "Teste", LocalDateTime.of(2022,5,30,22,30,59), "Ok");
 
     @Test
     void getId() {

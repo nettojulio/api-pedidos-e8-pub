@@ -1,35 +1,37 @@
 package e8ilab2.apipedidos.services;
 
-import e8ilab2.apipedidos.dao.PedidosDAO;
-import e8ilab2.apipedidos.models.Pedidos;
+import e8ilab2.apipedidos.dao.PedidoDAO;
+import e8ilab2.apipedidos.models.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-public class PedidosServices implements IPedidosServices {
+public class PedidoService implements IPedidoService {
     @Autowired
-    private PedidosDAO dao;
+    private PedidoDAO dao;
 
     @Override
-    public List<Pedidos> recuperarTodos() {
-        return dao.recuperarTodos();
+    public Page<Pedido> recuperarTodos(Pageable p) {
+        return dao.findAll(p);
     }
 
     @Override
-    public Pedidos recuperarPorIdPedido(Integer id) {
+    public Pedido recuperarPorIdPedido(Integer id) {
         return dao.recuperarPorIdPedido(id);
     }
 
     @Override
-    public List<Pedidos> recuperarPorIdDoUsuario(Integer id) {
+    public List<Pedido> recuperarPorIdDoUsuario(Integer id) {
         return dao.recuperarPorIdDoUsuario(id);
     }
 
     @Override
-    public Pedidos novoPedido(Pedidos novoPedido) {
+    public Pedido novoPedido(Pedido novoPedido) {
         try {
             if (novoPedido.getDataPedido() == null) {
                 novoPedido.setDataPedido(LocalDateTime.now());
@@ -45,7 +47,7 @@ public class PedidosServices implements IPedidosServices {
     }
 
     @Override
-    public Pedidos alterarDadosPedido(Pedidos dadosAlterados, Integer id) {
+    public Pedido alterarDadosPedido(Pedido dadosAlterados, Integer id) {
         try {
             return dao.save(dadosAlterados);
         } catch (Exception ex) {
@@ -63,4 +65,6 @@ public class PedidosServices implements IPedidosServices {
             return false;
         }
     }
+
+
 }
