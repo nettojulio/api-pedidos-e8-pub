@@ -181,6 +181,39 @@ para rodar os containers docker das três APIs conjuntamente, a partir das respe
   GET /pedidos/usuario/{id}
 ```
 
+#### Dados Enviados
+
+| Variável   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `Integer` | PathVariable identificadora do usuario vinculado ao(s) pedido(s) a ser(em) encontrado(s) |
+
+#### **No Body
+
+#### Dados Recebidos
+
+```http
+[
+	{
+		"id": 1,
+		"usuarioId": 1,
+		"valorTotal": 12.99,
+		"descricao": "Milk Shake2",
+		"dataPedido": "2022-06-01T19:35:09",
+		"status": "Pendente"
+	},
+	{
+		"id": 4,
+		"usuarioId": 1,
+		"valorTotal": 20.54,
+		"descricao": "Cachorro-quente",
+		"dataPedido": "2022-06-07T15:58:18.276477",
+		"status": "Pendente"
+	}
+]
+```
+
+#### (200) OK, Erro(401) Não Autorizado
+
 ---
 
 ### Alterar Pedido
