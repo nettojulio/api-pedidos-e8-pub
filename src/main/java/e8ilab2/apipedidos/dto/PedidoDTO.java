@@ -1,31 +1,33 @@
-package e8ilab2.apipedidos.models;
+package e8ilab2.apipedidos.dto;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tb_pedidos")
-public class Pedidos {
-
-    @Id
-    @Column(name = "id", nullable = false, columnDefinition = "SERIAL")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PedidoDTO {
     private Integer id;
 
-    @Column(name = "usuario_id", nullable = false, columnDefinition = "INTEGER")
     private Integer usuarioId;
 
-    @Column(name = "valor_total", nullable = false, columnDefinition = "DECIMAL")
+    private String usuarioName;
+
+    private String usuarioEmail;
+
     private Double valorTotal;
 
-    @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(name = "data_pedido", nullable = false, columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataPedido;
+    private String dataPedido;
 
-    @Column(name = "status", nullable = false, length = 50, columnDefinition = "VARCHAR")
     private String status;
+
+    public PedidoDTO(Integer usuarioId, String usuarioName, String usuarioEmail, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
+        this.usuarioId = usuarioId;
+        this.usuarioName = usuarioName;
+        this.usuarioEmail = usuarioEmail;
+        this.valorTotal = valorTotal;
+        this.descricao = descricao;
+        this.dataPedido = dataPedido.toString();
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -41,6 +43,22 @@ public class Pedidos {
 
     public void setUsuarioId(Integer usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public String getUsuarioName() {
+        return usuarioName;
+    }
+
+    public void setUsuarioName(String usuarioName) {
+        this.usuarioName = usuarioName;
+    }
+
+    public String getUsuarioEmail() {
+        return usuarioEmail;
+    }
+
+    public void setUsuarioEmail(String usuarioEmail) {
+        this.usuarioEmail = usuarioEmail;
     }
 
     public Double getValorTotal() {
@@ -59,12 +77,12 @@ public class Pedidos {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataPedido() {
+    public String getDataPedido() {
         return dataPedido;
     }
 
     public void setDataPedido(LocalDateTime dataPedido) {
-        this.dataPedido = dataPedido;
+        this.dataPedido = dataPedido.toString();
     }
 
     public String getStatus() {
@@ -75,29 +93,17 @@ public class Pedidos {
         this.status = status;
     }
 
-    public Pedidos() {
-    }
-
-    public Pedidos(Integer id, Integer usuarioId, Double valorTotal, String descricao, LocalDateTime dataPedido, String status) {
-        this.id = id;
-        this.usuarioId = usuarioId;
-        this.valorTotal = valorTotal;
-        this.descricao = descricao;
-        this.dataPedido = dataPedido;
-        this.status = status;
-    }
-
     @Override
     public String toString() {
-        return "Pedidos{" +
+        return "PedidoDTO{" +
                 "id=" + id +
                 ", usuarioId=" + usuarioId +
+                ", usuarioName='" + usuarioName + '\'' +
+                ", usuarioEmail='" + usuarioEmail + '\'' +
                 ", valorTotal=" + valorTotal +
                 ", descricao='" + descricao + '\'' +
                 ", dataPedido=" + dataPedido +
                 ", status='" + status + '\'' +
                 '}';
     }
-
-
 }
