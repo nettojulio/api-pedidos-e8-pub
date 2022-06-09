@@ -15,15 +15,15 @@ public class PageableUtils {
 
     public static Pageable sortedShowRoom(Integer page, Integer size, String properties, Boolean descending) {
         Pageable sortedShowElements;
-        page = page == null ? 0 : page;
-        size = size == null ? 10 : size;
+        page = page == null || page <= 0 ? 0 : page - 1;
+        size = size == null || size <= 0 ? 10 : size;
         properties = properties == null ? "id" : properties;
-        descending = descending == null ? true : false;
+        descending = descending == null || descending.equals(false) ? false : true;
 
         if (!descending) {
-            sortedShowElements = PageRequest.of(page, size, Sort.by(properties).descending());
-        } else {
             sortedShowElements = PageRequest.of(page, size, Sort.by(properties));
+        } else {
+            sortedShowElements = PageRequest.of(page, size, Sort.by(properties).descending());
         }
         return sortedShowElements;
     }
