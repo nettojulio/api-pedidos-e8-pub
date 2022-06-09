@@ -9,7 +9,13 @@ public class DateConverter {
     }
 
     public static LocalDateTime stringToDate(String s) {
-        String dateString = s.substring(0, 19).replaceAll("T", " ");
+        Integer cut = s.length() > 16 ? 19 : 16;
+        String dateString = s.substring(0, cut).replaceAll("T", " ");
+
+        if (dateString.length() == 16) {
+            dateString += ":00";
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
         return dateTime;
