@@ -18,6 +18,7 @@ public class SQSService {
                 .credentialsProvider(awsCredentialsDispatcher())
                 .build();
 
+        // TODO Criar envs para QueueName e AccountID
         GetQueueUrlRequest request = GetQueueUrlRequest.builder()
                 .queueName("sqs-e8-desafio2")
                 .queueOwnerAWSAccountId("755977887883").build();
