@@ -7,8 +7,8 @@ import org.springframework.data.domain.Sort;
 public class PageableUtils {
 
     public static Pageable showRoom(Integer page, Integer size) {
-        page = page == null ? 0 : page;
-        size = size == null ? 10 : size;
+        page = page == null || page <= 0 ? 0 : page - 1;
+        size = size == null || size <= 0 ? 10 : size;
         Pageable simpleShowElements = PageRequest.of(page, size);
         return simpleShowElements;
     }
