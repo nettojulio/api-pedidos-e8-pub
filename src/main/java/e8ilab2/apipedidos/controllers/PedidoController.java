@@ -11,9 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import static e8ilab2.apipedidos.utils.DateConverter.stringToDate;
+import static e8ilab2.apipedidos.utils.PageableUtils.showRoom;
 import static e8ilab2.apipedidos.utils.PageableUtils.sortedShowRoom;
 
 @RestController
@@ -38,9 +37,9 @@ public class PedidoController {
     }
 
     @GetMapping("/pedidos/usuario/{id}")
-    public ResponseEntity<?> recuperarPorIdDoUsuario(@PathVariable Integer id) {
-        List<Pedido> pedido = service.recuperarPorIdDoUsuario(id);
-        if (pedido.size() != 0) {
+    public ResponseEntity<?> recuperarPedidosPeloIdDoUsuario(@PathVariable Integer id, @RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
+        Page<Pedido> pedido = service.recuperarPedidosPeloIdDoUsuario(id, showRoom(page, size));
+        if (pedido.getSize() != 0) {
             return ResponseEntity.ok(pedido);
         }
         return ResponseEntity.status(404).body(new Messages(404, "Não foram encontrados pedidos para este usuário"));

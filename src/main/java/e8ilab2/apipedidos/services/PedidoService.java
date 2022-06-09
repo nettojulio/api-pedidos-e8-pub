@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Component
 public class PedidoService implements IPedidoService {
@@ -26,8 +25,8 @@ public class PedidoService implements IPedidoService {
     }
 
     @Override
-    public List<Pedido> recuperarPorIdDoUsuario(Integer id) {
-        return dao.recuperarPorIdDoUsuario(id);
+    public Page<Pedido> recuperarPedidosPeloIdDoUsuario(Integer id, Pageable p) {
+        return dao.findByusuarioId(id, p);
     }
 
     @Override
@@ -65,6 +64,5 @@ public class PedidoService implements IPedidoService {
             return false;
         }
     }
-
 
 }

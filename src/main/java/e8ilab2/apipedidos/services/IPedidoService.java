@@ -4,14 +4,12 @@ import e8ilab2.apipedidos.models.Pedido;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface IPedidoService {
     public Page<Pedido> recuperarTodos(Pageable p);
 
     public Pedido recuperarPorIdPedido(Integer id);
 
-    public List<Pedido> recuperarPorIdDoUsuario(Integer id);
+    public Page<Pedido> recuperarPedidosPeloIdDoUsuario(Integer id, Pageable p);
 
     public Pedido novoPedido(Pedido novoPedido);
 
