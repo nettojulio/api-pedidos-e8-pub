@@ -19,7 +19,7 @@ public class Filters extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         try {
-            HttpGet get = new HttpGet(System.getenv("URL_ADMIN_AUTH_ORDER_API"));
+            HttpGet get = new HttpGet(System.getenv("URL_ADMIN_AUTH_API"));
             HttpClientBuilder clientBuilder = HttpClientBuilder.create();
             CloseableHttpClient client = clientBuilder.build();
             get.addHeader("Content-Type", "application/json");
