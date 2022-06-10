@@ -18,7 +18,6 @@ import static e8ilab2.apipedidos.utils.PageableUtils.sortedShowRoom;
 @RestController
 public class PedidoController {
 
-    // TODO Verificar com Evandro outro tipo de Injection
     @Autowired
     private IPedidoService service;
 
