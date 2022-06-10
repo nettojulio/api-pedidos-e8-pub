@@ -18,7 +18,7 @@ import static e8ilab2.apipedidos.utils.PageableUtils.sortedShowRoom;
 @RestController
 public class PedidoController {
 
-    // TODO Verificar com Evandro outro timo de Injection
+    // TODO Verificar com Evandro outro tipo de Injection
     @Autowired
     private IPedidoService service;
 
@@ -53,6 +53,7 @@ public class PedidoController {
         Pedido pedido = service.novoPedido(pedidoNew);
 
         if (pedido != null) {
+            pedidoDTO.setId(pedido.getId());
             String pedidoDTOParsed = new Gson().toJson(pedidoDTO);
             SQSService.sendMessage(pedidoDTOParsed);
             return ResponseEntity.status(201).body(pedido);
