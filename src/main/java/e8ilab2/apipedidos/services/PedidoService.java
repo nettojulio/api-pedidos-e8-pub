@@ -15,8 +15,8 @@ public class PedidoService implements IPedidoService {
     private PedidoDAO dao;
 
     @Override
-    public Page<Pedido> recuperarTodos(Pageable p) {
-        return dao.findAll(p);
+    public Page<Pedido> recuperarTodos(Pageable pageable) {
+        return dao.findAll(pageable);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class PedidoService implements IPedidoService {
     }
 
     @Override
-    public Page<Pedido> recuperarPedidosPeloIdDoUsuario(Integer id, Pageable p) {
-        return dao.findByusuarioId(id, p);
+    public Page<Pedido> recuperarPedidosPeloIdDoUsuario(Integer id, Pageable pageable) {
+        return dao.findByusuarioId(id, pageable);
     }
 
     @Override
