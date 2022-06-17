@@ -16,6 +16,7 @@ import static e8ilab2.apipedidos.utils.PageableUtils.showRoom;
 import static e8ilab2.apipedidos.utils.PageableUtils.sortedShowRoom;
 
 @RestController
+@CrossOrigin("*")
 public class PedidoController {
 
     @Autowired
