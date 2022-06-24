@@ -7,7 +7,3 @@ data:
   RDS_ORDER_DB_NAME: db_orders_api
   RDS_USERNAME: "foodlovers"
   URL_ADMIN_AUTH_API: "http://cluster-ip-api-administrador-e8:8080/validar"
-  AWS_ACCESS_KEY: AKIA3AA6LECFZ2H44GKR
-  AWS_SECRET_KEY: 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
-  AWS_SQS_QUEUE_NAME: eq8-sqs-desafio
-  AWS_SQS_QUEUE_ACCOUNT_ID: "755977887883"

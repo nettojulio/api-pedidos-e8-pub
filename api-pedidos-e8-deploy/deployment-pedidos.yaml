@@ -46,23 +46,23 @@ spec:
                   key: URL_ADMIN_AUTH_API
             - name: AWS_ACCESS_KEY
               valueFrom:
-                configMapKeyRef:
-                  name: config-map-api-pedidos-e8
+                secretKeyRef:
+                  name: secret-api-pedidos-e8
                   key: AWS_ACCESS_KEY
             - name: AWS_SECRET_KEY
               valueFrom:
-                configMapKeyRef:
-                  name: config-map-api-pedidos-e8
+                secretKeyRef:
+                  name: secret-api-pedidos-e8
                   key: AWS_SECRET_KEY
             - name: AWS_SQS_QUEUE_NAME
               valueFrom:
-                configMapKeyRef:
-                  name: config-map-api-pedidos-e8
+                secretKeyRef:
+                  name: secret-api-pedidos-e8
                   key: AWS_SQS_QUEUE_NAME
             - name: AWS_SQS_QUEUE_ACCOUNT_ID
               valueFrom:
-                configMapKeyRef:
-                  name: config-map-api-pedidos-e8
+                secretKeyRef:
+                  name: secret-api-pedidos-e8
                   key: AWS_SQS_QUEUE_ACCOUNT_ID
           ports:
             - containerPort: 8081
