@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map-api-pedidos-e8
+data:
+  RDS_HOSTNAME: "db-e8-desafio2.ccbiucioexib.us-east-1.rds.amazonaws.com"
+  RDS_ORDER_DB_NAME: db_orders_api
+  RDS_USERNAME: "postgres"
+  URL_ADMIN_AUTH_API: "http://cluster-ip-api-administrador-e8:8080/validar"
