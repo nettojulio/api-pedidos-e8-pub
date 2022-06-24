@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-ip-api-pedidos-e8
+spec:
+  type: ClusterIP
+  selector:
+    app: api-pedidos-e8
+  ports:
+    - port: 8081
+      targetPort: 8081

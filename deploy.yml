@@ -1,0 +1,24 @@
+- hosts: all
+  tasks:
+    - name: "Upload Files"
+      copy:
+        src: "api-pedidos-e8-deploy"
+        dest: "/home/ubuntu/grupo08/"
+
+    - name: "Apply secret-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/secret-pedidos.yaml -n grupo-08-dev
+
+    - name: "Apply configmap-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/configmap-pedidos.yaml -n grupo-08-dev
+
+    - name: "Apply loadbalancer-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/loadbalancer-pedidos.yaml -n grupo-08-dev
+
+    - name: "Apply clusterip-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/clusterip-pedidos.yaml -n grupo-08-dev
+
+    - name: "Apply deployment-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/deployment-pedidos.yaml -n grupo-08-dev
+
+    - name: "Apply hpa-pedidos.yaml"
+      shell: kubectl apply -f /home/ubuntu/grupo08/api-pedidos-e8-deploy/hpa-pedidos.yaml -n grupo-08-dev
